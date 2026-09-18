@@ -14,45 +14,49 @@
       --ink:#1a1a1a; --sub:#525252; --line:#e2e2e2; --tipbg:#eff6ff; --tipbar:#2563eb;
       --warnbg:#fff1f2; --warnbar:#e11d48;
     }
-    body{ background:#f4f4f2; }
+    body{ background:#111; }
     .reveal{ font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",-apple-system,"Segoe UI",sans-serif; color:var(--ink); }
     .reveal .slides{ text-align:left; }
+    /* 슬라이드 하나 = 고정 캔버스(1280x960). reveal.js가 화면 크기에 맞춰
+       "비율을 유지한 채" 통째로 축소/확대(letterbox)한다 — 내부에 별도
+       overflow:scroll을 주면 모바일 transform-scale과 충돌해 깨져 보이므로
+       사용하지 않고, 대신 폰트를 작게 잡아 캔버스 안에 내용이 들어오게 한다. */
     .reveal .slides section{
-      overflow-y:auto; max-height:100%;
-      padding:34px 46px !important;
-      font-size:0.66em;
-      line-height:1.42;
+      padding:30px 40px !important;
+      font-size:0.58em;
+      line-height:1.36;
     }
     .reveal h1, .reveal h2, .reveal h3{ font-family:inherit; text-transform:none; letter-spacing:0; }
     .reveal h2{
       font-size:1.5em; font-weight:800; color:var(--ink);
       border-bottom:5px solid var(--c-part1);
-      padding-bottom:0.22em; margin-bottom:0.55em;
+      padding-bottom:0.2em; margin-bottom:0.45em;
     }
     .reveal h1{ font-size:2.1em; font-weight:800; }
     .reveal p, .reveal li{ font-size:1em; color:var(--ink); }
     .reveal strong{ color:#111; font-weight:800; }
-    .reveal ul, .reveal ol{ margin-left:0.2em; }
-    .reveal li{ margin-bottom:0.32em; }
-    .reveal li > ul, .reveal li > ol{ margin-top:0.25em; }
+    .reveal ul, .reveal ol{ margin-left:0.2em; margin-top:0.3em; margin-bottom:0.3em; }
+    .reveal li{ margin-bottom:0.22em; }
+    .reveal li > ul, .reveal li > ol{ margin-top:0.2em; }
+    .reveal p{ margin:0.4em 0; }
 
     /* 표 */
-    .reveal table{ font-size:0.72em; width:100%; border-collapse:collapse; margin:0.6em 0; }
-    .reveal table th{ background:var(--c-part1); color:#fff; padding:0.45em 0.6em; text-align:left; }
-    .reveal table td{ border-bottom:1px solid var(--line); padding:0.42em 0.6em; vertical-align:top; }
+    .reveal table{ font-size:0.68em; width:100%; border-collapse:collapse; margin:0.5em 0; }
+    .reveal table th{ background:var(--c-part1); color:#fff; padding:0.36em 0.55em; text-align:left; }
+    .reveal table td{ border-bottom:1px solid var(--line); padding:0.34em 0.55em; vertical-align:top; }
     .reveal table tr:nth-child(even) td{ background:#f7f8fa; }
 
     /* 코드블록 */
-    .reveal pre{ box-shadow:none; border-radius:10px; width:100%; }
-    .reveal pre code{ font-size:0.62em; max-height:520px; padding:0.9em 1em; line-height:1.5; }
+    .reveal pre{ box-shadow:none; border-radius:10px; width:100%; margin:0.4em 0; }
+    .reveal pre code{ font-size:0.56em; max-height:620px; padding:0.8em 1em; line-height:1.42; }
     .reveal code{ font-family:"Cascadia Code","Consolas",monospace; }
     .reveal :not(pre) > code{ background:#eef0f3; color:#b1361e; padding:0.08em 0.4em; border-radius:5px; font-size:0.88em; }
 
     /* 인용문 = 팁/주의 박스 */
     .reveal blockquote{
-      width:100%; margin:0.7em 0 0.2em 0; box-shadow:none;
+      width:100%; margin:0.55em 0 0.15em 0; box-shadow:none;
       background:var(--tipbg); border:none; border-left:6px solid var(--tipbar);
-      border-radius:8px; padding:0.55em 0.9em; font-style:normal; font-size:0.9em;
+      border-radius:8px; padding:0.45em 0.8em; font-style:normal; font-size:0.86em;
     }
     .reveal blockquote p{ margin:0; font-size:1em; }
     .reveal blockquote.warn{ background:var(--warnbg); border-left-color:var(--warnbar); }
@@ -61,7 +65,10 @@
     .reveal ul li input[type=checkbox]{ transform:scale(1.25); margin-right:0.5em; accent-color:var(--c-part1); }
 
     /* 이미지 */
-    .reveal section img{ box-shadow:0 6px 24px rgba(0,0,0,0.12); border:1px solid #eee; border-radius:10px; }
+    .reveal section img{
+      box-shadow:0 6px 24px rgba(0,0,0,0.12); border:1px solid #eee; border-radius:10px;
+      max-height:440px; max-width:100%; width:auto; height:auto; display:block; margin:0.5em auto;
+    }
     .reveal .img-cap{ font-size:0.62em; color:var(--sub); text-align:center; margin-top:0.35em; }
 
     /* 파트 표지 슬라이드 */
@@ -1221,11 +1228,14 @@ lastButtonState = reading;
       hash: true,
       center: false,
       width: 1280,
-      height: 800,
-      margin: 0.04,
+      height: 960,
+      minScale: 0.1,
+      maxScale: 2.0,
+      margin: 0.03,
       controls: true,
       progress: true,
       slideNumber: 'c/t',
+      touch: true,
       plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
     });
   </script>
