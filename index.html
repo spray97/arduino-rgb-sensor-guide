@@ -47,10 +47,21 @@
     .reveal table tr:nth-child(even) td{ background:#f7f8fa; }
 
     /* 코드블록 */
-    .reveal pre{ box-shadow:none; border-radius:10px; width:100%; margin:0.4em 0; }
+    .reveal pre{ box-shadow:none; border-radius:10px; width:100%; margin:0.4em 0; position:relative; }
     .reveal pre code{ font-size:0.56em; max-height:620px; padding:0.8em 1em; line-height:1.42; }
     .reveal code{ font-family:"Cascadia Code","Consolas",monospace; }
     .reveal :not(pre) > code{ background:#eef0f3; color:#b1361e; padding:0.08em 0.4em; border-radius:5px; font-size:0.88em; }
+
+    /* 코드블록 복사 버튼 */
+    .copy-btn{
+      position:absolute; top:10px; right:10px; z-index:5;
+      background:rgba(255,255,255,0.14); color:#fff; border:1px solid rgba(255,255,255,0.4);
+      border-radius:6px; padding:0.32em 0.75em; font-size:13px; font-weight:600;
+      font-family:"Pretendard","Malgun Gothic",sans-serif; cursor:pointer; line-height:1;
+      transition:background 0.15s ease;
+    }
+    .copy-btn:hover{ background:rgba(255,255,255,0.3); }
+    .copy-btn.copied{ background:#059669; border-color:#059669; }
 
     /* 인용문 = 팁/주의 박스 */
     .reveal blockquote{
@@ -1282,6 +1293,53 @@ lastButtonState = reading;
       touch: true,
       plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
     });
+
+    // 코드블록마다 "복사" 버튼 추가 — 아두이노 IDE로 코드를 바로 옮길 수 있도록
+    function addCopyButtons() {
+      document.querySelectorAll('.reveal pre').forEach(function (pre) {
+        if (pre.querySelector('.copy-btn')) return;
+        var codeEl = pre.querySelector('code');
+        if (!codeEl) return;
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'copy-btn';
+        btn.textContent = '복사';
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var text = codeEl.innerText;
+          var onDone = function () {
+            btn.textContent = '복사됨!';
+            btn.classList.add('copied');
+            setTimeout(function () {
+              btn.textContent = '복사';
+              btn.classList.remove('copied');
+            }, 1500);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(onDone).catch(function () {
+              fallbackCopy(text, onDone);
+            });
+          } else {
+            fallbackCopy(text, onDone);
+          }
+        });
+        pre.appendChild(btn);
+      });
+    }
+
+    function fallbackCopy(text, onDone) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); onDone(); } catch (e) { /* noop */ }
+      document.body.removeChild(ta);
+    }
+
+    Reveal.on('ready', addCopyButtons);
   </script>
 </body>
 </html>
