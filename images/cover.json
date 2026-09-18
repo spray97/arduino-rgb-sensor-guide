@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-09-18T11:17:54.931115",
+  "prompt": "simple clean hero illustration, no callout boxes, no flowchart, no labels, no icon bar: a single cardboard box shown at an isometric angle with one side cut away to reveal its interior, inside the interior a small circuit board with a tiny sensor chip glowing bright white light sits on a breadboard, a thin bundle of colorful wires exits through a small hole in the box wall and connects to a separate small external panel mounted on the outside of the box, the external panel has a small rectangular LCD screen glowing soft green with a few colored bar shapes on it and one round push button beside it, soft shadows, friendly clean flat vector tech-illustration style, plenty of white empty background space around the box, no readable text anywhere",
+  "preset": "diagram",
+  "platform": null,
+  "thinking": "medium",
+  "quality": "high",
+  "provider": "openrouter",
+  "n": 1,
+  "seed": null,
+  "output": "cover.png",
+  "project": null,
+  "estimated_cost": 0.32
+}

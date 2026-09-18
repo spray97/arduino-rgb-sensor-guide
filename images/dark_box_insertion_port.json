@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-09-18T11:04:01.355776",
+  "prompt": "cutaway side-view technical illustration of the inside of a small dark box, interior walls lined with black paper, a color sensor chip mounted on the inside wall facing a small rectangular slot cut in the opposite wall, a capsule-shaped sample about to be inserted through the slot toward the sensor, a dashed double-headed arrow between the sensor and the sample slot labeled '3-10mm', clean flat vector engineering cutaway diagram, white background, readable sans-serif label",
+  "preset": "diagram",
+  "platform": null,
+  "thinking": "medium",
+  "quality": "high",
+  "provider": "openrouter",
+  "n": 1,
+  "seed": null,
+  "output": "dark_box_insertion_port.png",
+  "project": null,
+  "estimated_cost": 0.32
+}
