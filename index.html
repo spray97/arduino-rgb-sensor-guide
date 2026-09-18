@@ -71,11 +71,32 @@
     }
     .reveal .img-cap{ font-size:0.62em; color:var(--sub); text-align:center; margin-top:0.35em; }
 
-    /* 파트 표지 슬라이드 */
-    .part-title{ display:flex; flex-direction:column; justify-content:center; height:100%; }
-    .part-title h1{ font-size:2.3em; margin-bottom:0.3em; }
-    .part-title p{ font-size:1.15em; color:var(--sub); }
-    .badge{ display:inline-block; padding:0.15em 0.7em; border-radius:999px; color:#fff; font-weight:800; font-size:0.85em; margin-bottom:0.6em; }
+    /* 파트 표지 슬라이드 — 역할별 크기·굵기·색상 대비를 분명히 준 타이틀 스케일 */
+    .part-title{
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; height:100%; padding:0 0.5em;
+    }
+    .part-title .kicker{
+      display:block; font-size:0.78em; font-weight:700; letter-spacing:0.16em; text-transform:uppercase;
+      color:rgba(255,255,255,0.5); margin-bottom:1.3em;
+    }
+    .part-title h2{
+      font-size:2.5em; font-weight:800; color:#fff; border-bottom:none;
+      margin:0 0 0.32em 0; padding:0; line-height:1.26; letter-spacing:-0.015em; max-width:12em;
+    }
+    .part-title h3{
+      font-size:1.3em; font-weight:500; color:rgba(255,255,255,0.66); border:none;
+      margin:0 0 1.2em 0; padding:0; line-height:1.5;
+    }
+    .part-title .byline{
+      font-size:0.86em; color:rgba(255,255,255,0.42); line-height:1.8; letter-spacing:0.01em;
+    }
+    .cover-hero h2{ font-size:3.2em; max-width:13.5em; }
+    .cover-hero h3{ font-size:1.45em; }
+    .badge{
+      display:inline-block; padding:0.24em 1em; border-radius:999px; color:#fff; font-weight:800;
+      font-size:0.9em; margin-bottom:1em; letter-spacing:0.08em;
+    }
 
     .reveal .progress{ color:var(--c-part1); height:6px; }
     .reveal .slide-number{ background:transparent; color:var(--sub); font-size:0.9em; }
@@ -89,13 +110,14 @@
       <section data-markdown data-background-color="#0b1220">
         <script type="text/template">
 <!-- .slide: data-background-color="#0b1220" -->
-<div class="part-title" style="color:#fff;">
+<div class="part-title cover-hero" style="color:#fff;">
+<span class="kicker">R&E 실험장치 제작 가이드</span>
 
 ## 색으로 중금속을 읽는 기계 만들기
 ### 아두이노 RGB 정량판독 장치 제작 가이드
 
-2026학년도 창의융합 R&E — 적양배추 안토시아닌 중금속 감지 키트 개발<br>
-지현우 담당 파트 · 시니어 과학샘과 함께하는 단계별 조립 가이드
+<p class="byline">2026학년도 창의융합 R&E — 적양배추 안토시아닌 중금속 감지 키트 개발<br>
+지현우 담당 파트 · 시니어 과학샘과 함께하는 단계별 조립 가이드</p>
 
 </div>
         </script>
